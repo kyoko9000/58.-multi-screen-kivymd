@@ -38,11 +38,11 @@ class MainWindow(MDScreen):
             #     text=i,
             #     secondary_text="Secondary text here"
             # )
-            item = ThreeLineListItem(
-                text=i,
-                secondary_text="This is a multi-line label where you can",
-                tertiary_text="fit more text than usual"
-            )
+            # item = ThreeLineListItem(
+            #     text=i,
+            #     secondary_text="This is a multi-line label where you can",
+            #     tertiary_text="fit more text than usual"
+            # )
 
             # *************** icon *************************
             # item = OneLineAvatarListItem(
@@ -52,16 +52,16 @@ class MainWindow(MDScreen):
             #     text=i,
             #     secondary_text="Secondary text here"
             # )
-            # item = ThreeLineAvatarListItem(
-            #     text=i,
-            #     secondary_text="Secondary text here",
-            #     tertiary_text="fit more text than usual",
-            #     _txt_left_pad="100dp"
-            # )
-            # image = ImageLeftWidget()
-            # image.source = "pics/{}".format(j)
-            # image.radius = [25, 25, 25, 25]
-            # item.add_widget(image)
+            item = ThreeLineAvatarListItem(
+                text=i,
+                secondary_text="Secondary text here",
+                tertiary_text="fit more text than usual",
+                _txt_left_pad="100dp"
+            )
+            image = ImageLeftWidget()
+            image.source = "pics/{}".format(j)
+            image.radius = [25, 25, 25, 25]
+            item.add_widget(image)
 
             ml.add_widget(item)
             item.bind(on_press=self.dosomething)
