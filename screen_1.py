@@ -20,14 +20,13 @@ class MainWindow(MDScreen):
             orientation='vertical'
         )
         toolbar = MDToolbar(
-            title="Demo",
+            title="Menu",
         )
         # toolbar.md_bg_color = [1, 0.2, 0.2, 1]
         toolbar.left_action_items = [["menu", lambda x: print('menu')]]
         toolbar.right_action_items = [["logout", lambda x: print('exit')]]
 
-        bottom = MDBottomNavigation(
-        )
+        bottom = MDBottomNavigation()
         # bottom.md_bg_color = [0.4, 0.4, 0.4, 1]
         # bottom.panel_color = [0.2, 0.2, 0.2, 1]
         with bottom.canvas:
