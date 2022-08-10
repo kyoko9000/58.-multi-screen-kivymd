@@ -20,12 +20,11 @@ class MainWindow(MDScreen):
         super(MainWindow, self).__init__()
 
         sv = ScrollView()
-        sv_1 = ScrollView()
-
         ml = MDList()
-        ml_1 = MDList()
-
         sv.add_widget(ml)
+
+        sv_1 = ScrollView()
+        ml_1 = MDList()
         sv_1.add_widget(ml_1)
 
         contacts = [
@@ -43,28 +42,25 @@ class MainWindow(MDScreen):
                 text=i,
                 secondary_text="Secondary text here",
                 tertiary_text="fit more text than usual",
-                _txt_left_pad="70dp"
+                _txt_left_pad="100dp"
             )
             image = ImageLeftWidget()
             image.source = "pics/{}".format(j)
             image.radius = [25, 25, 25, 25]
-
             item.add_widget(image)
-            ml.add_widget(item)
 
+            ml.add_widget(item)
             item.bind(on_press=self.dosomething)
 
         for i, j in zip(contacts, pics):
-            # --------
             item_1 = OneLineAvatarListItem(
                 text=i
             )
             image_1 = ImageLeftWidget()
             image_1.source = "pics/{}".format(j)
             image_1.radius = [25, 25, 25, 25]
-            # --------
             item_1.add_widget(image_1)
-            # --------
+
             ml_1.add_widget(item_1)
 
         box = BoxLayout(
@@ -120,7 +116,6 @@ class MainWindow(MDScreen):
         item_1.add_widget(sv)
         item_2.add_widget(sv_1)
         item_3.add_widget(label_3)
-
         bottom.add_widget(item_1)
         bottom.add_widget(item_2)
         bottom.add_widget(item_3)
