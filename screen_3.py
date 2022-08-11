@@ -68,6 +68,17 @@ class MainWindow(MDScreen):
             halign='center'
         )
 
+        item_1.add_widget(label_1)
+        item_2.add_widget(label_2)
+        item_3.add_widget(label_3)
+        bottom.add_widget(item_1)
+        bottom.add_widget(item_2)
+        bottom.add_widget(item_3)
+
+        box.add_widget(toolbar)
+        box.add_widget(bottom)
+        self.add_widget(box)
+
         menu_items = [{
             "text": f"Item {i}",
             "viewclass": "OneLineListItem",
@@ -75,6 +86,7 @@ class MainWindow(MDScreen):
         } for i in range(5)
         ]
         self.menu = MDDropdownMenu(
+            max_height=dp(240),
             items=menu_items,
             width_mult=2,
         )
@@ -88,21 +100,10 @@ class MainWindow(MDScreen):
         self.menu_1 = MDDropdownMenu(
             max_height=dp(250),
             # ver_growth="up",
+            background_color=[0, 0.6, 0.33, 1],
             items=menu_items_1,
             width_mult=2,
         )
-
-        item_1.add_widget(label_1)
-        item_2.add_widget(label_2)
-        item_3.add_widget(label_3)
-
-        bottom.add_widget(item_1)
-        bottom.add_widget(item_2)
-        bottom.add_widget(item_3)
-
-        box.add_widget(toolbar)
-        box.add_widget(bottom)
-        self.add_widget(box)
 
     def callback(self, button):
         self.menu.caller = button
