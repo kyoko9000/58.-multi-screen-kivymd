@@ -90,15 +90,14 @@ class MainWindow(MDScreen):
             items=menu_items,
             width_mult=2,
         )
-
         menu_items_1 = [{
             "text": f"Item {i}",
             "viewclass": "OneLineListItem",
             "on_release": lambda x=f"Item {i}": self.menu_callback(x)
-        } for i in range(5)
+        } for i in range(8)
         ]
         self.menu_1 = MDDropdownMenu(
-            max_height=dp(250),
+            max_height=dp(400),
             # ver_growth="up",
             background_color=[0, 0.6, 0.33, 1],
             items=menu_items_1,
