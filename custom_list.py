@@ -40,7 +40,7 @@ class MainWindow(MDScreen):
             # )
             # item = ThreeLineListItem(
             #     text=i,
-            #     secondary_text="This is a multi-line label where you can",
+            #     secondary_text="This is a multi-line label_1 where you can",
             #     tertiary_text="fit more text than usual"
             # )
 
