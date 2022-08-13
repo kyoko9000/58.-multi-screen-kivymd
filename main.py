@@ -26,7 +26,7 @@ class MainWindow(MDScreen):
             pos_hint={"center_x": .7, "center_y": .8},
             font_style="H2"
         )
-        # label.font_size = 80
+        # label_1.font_size = 80
         button_screen_1 = MDIconButton(
             icon="card-plus-outline",
             pos_hint={"center_x": .5, "center_y": .5},
