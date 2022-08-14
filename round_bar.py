@@ -1,4 +1,4 @@
-# ****************kivyMD GUI **********************************
+# **************kivyMD GUI ********************************
 from kivy import Config
 from kivy.clock import Clock
 from kivy.core.text import Label
@@ -46,7 +46,7 @@ class MainWindow(MDScreen):
             text='main',
             icon='home'
         )
-        self.Box_1 = BoxLayout(
+        self.box = BoxLayout(
             size_hint=(None, None),
             size=(300, 300),
             pos_hint={"center_x": 0.5, "center_y": 0.5}
@@ -70,7 +70,7 @@ class MainWindow(MDScreen):
             halign='center'
         )
 
-        item_1.add_widget(self.Box_1)
+        item_1.add_widget(self.box)
         item_2.add_widget(label_2)
         item_3.add_widget(label_3)
         bottom.add_widget(item_1)
@@ -82,8 +82,12 @@ class MainWindow(MDScreen):
         self.add_widget(box)
 
         self.l = ProgressBar()
+        self.l.size_hint = (None, None)
+        self.l.height = 50
+        self.l.width = 50
+        self.l.max = 100
 
-        self.change_value = 60
+        self.change_value = 39.263
         # Animate the progress bar
         Clock.schedule_interval(self.animate, 0.1)
 
@@ -96,55 +100,15 @@ class MainWindow(MDScreen):
         # Initialise the texture_size_1 variable
         self.texture_size_1 = None
 
-        self.l.size_hint = (None, None)
-        self.l.height = 50
-        self.l.width = 50
-        self.l.max = 100
-
         # Refresh the text
         self.refresh_text()
-        # Redraw on innit
-        # self.draw()
 
     def animate(self, dt):
-        # self.set_value(0)
+        # self.set_value(60.56)
         if self.l.value < self.change_value:
             self.set_value(self.l.value + 1)
         # else:
         #     self.set_value(0)
-
-    def draw(self):
-        with self.Box_1.canvas:
-            # Empty canvas instructions
-            self.Box_1.canvas.clear()
-
-            # Draw no-progress circle
-            Color(0.26, 0.26, 0.26)
-            Ellipse(pos=self.Box_1.pos, size=self.Box_1.size)
-
-            # Draw progress circle, small hack if there is no progress (angle_end = 0 results in full progress)
-            Color(1, 0, 0)
-            Ellipse(pos=self.Box_1.pos, size=self.Box_1.size,
-                    angle_end=(0.001 if self.l.value_normalized == 0 else self.l.value_normalized * 360))
-            #
-            # # Draw the inner circle (colour should be equal to the background)
-            Color(0, 0, 0)
-            Ellipse(pos=(self.Box_1.pos[0] + self.thickness_1 / 2, self.Box_1.pos[1] + self.thickness_1 / 2),
-                    size=(self.Box_1.size[0] - self.thickness_1, self.Box_1.size[1] - self.thickness_1))
-
-            # Center and draw the progress text
-            Color(1, 1, 1, 1)
-            # added pos[0]and pos[1] for centralizing label_1 text whenever pos_hint is set
-            Rectangle(texture=self.label_1.texture, size=self.texture_size_1,
-                      pos=(self.Box_1.size[0] / 2 - self.texture_size_1[0] / 2 + self.Box_1.pos[0],
-                           self.Box_1.size[1] / 2 - self.texture_size_1[1] / 2 + self.Box_1.pos[1]))
-
-    def refresh_text(self):
-        # Render the label_1
-        self.label_1.refresh()
-
-        # Set the texture size each refresh
-        self.texture_size_1 = list(self.label_1.texture.size)
 
     def set_value(self, value):
         # Update the progress bar value
@@ -156,6 +120,39 @@ class MainWindow(MDScreen):
 
         # Draw all the elements
         self.draw()
+
+    def refresh_text(self):
+        # Render the label_1
+        self.label_1.refresh()
+
+        # Set the texture size each refresh
+        self.texture_size_1 = list(self.label_1.texture.size)
+
+    def draw(self):
+        with self.box.canvas:
+            # Empty canvas instructions
+            self.box.canvas.clear()
+
+            # Draw no-progress circle
+            Color(0.26, 0.26, 0.26)
+            Ellipse(pos=self.box.pos, size=self.box.size)
+
+            # Draw progress circle, small hack if there is no progress (angle_end = 0 results in full progress)
+            Color(1, 0, 0)
+            Ellipse(pos=self.box.pos, size=self.box.size,
+                    angle_end=(0.001 if self.l.value_normalized == 0 else self.l.value_normalized * 360))
+            #
+            # # Draw the inner circle (colour should be equal to the background)
+            Color(0.2, 0.8, 0)
+            Ellipse(pos=(self.box.pos[0] + self.thickness_1 / 2, self.box.pos[1] + self.thickness_1 / 2),
+                    size=(self.box.size[0] - self.thickness_1, self.box.size[1] - self.thickness_1))
+
+            # Center and draw the progress text
+            Color(1, 1, 1, 1)
+            # added pos[0]and pos[1] for centralizing label_1 text whenever pos_hint is set
+            Rectangle(texture=self.label_1.texture, size=self.texture_size_1,
+                      pos=(self.box.size[0] / 2 - self.texture_size_1[0] / 2 + self.box.pos[0],
+                           self.box.size[1] / 2 - self.texture_size_1[1] / 2 + self.box.pos[1]))
 
 
 class MyApp(MDApp):
