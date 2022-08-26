@@ -40,7 +40,7 @@ class MainWindow(MDScreen):
 
         item_1 = MDBottomNavigationItem(
             name='screen 1',
-            text='main',
+            text='Main',
             icon='home'
         )
         label_1 = MDLabel(
