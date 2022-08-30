@@ -3,6 +3,7 @@ from kivy import Config
 from kivy.graphics import Color, Rectangle
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
+from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDFloatingActionButton
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.label import MDLabel
@@ -15,11 +16,11 @@ Config.set('graphics', 'height', '600')
 Config.write()
 
 
-class MainWindow(MDScreen):
+class MainWindow(MDFloatLayout):
     def __init__(self):
         super(MainWindow, self).__init__()
-        box = MDFloatLayout(
-            # orientation='vertical'
+        box = MDBoxLayout(
+            orientation='vertical'
         )
         toolbar = MDTopAppBar(
             title="Menu",
@@ -72,7 +73,7 @@ class MainWindow(MDScreen):
             theme_icon_color="Custom",
             md_bg_color=[1, 0, 0, 1],
             icon_color=[0, 1, 0, 1],
-            pos_hint={"center_x": .5, "center_y": .5},
+            pos_hint={"center_x": .85, "center_y": .2},
         )
         item_1.add_widget(label_1)
         item_2.add_widget(label_2)
@@ -82,9 +83,9 @@ class MainWindow(MDScreen):
         bottom.add_widget(item_3)
 
         box.add_widget(toolbar)
-        box.add_widget(button)
         box.add_widget(bottom)
         self.add_widget(box)
+        self.add_widget(button)
 
 
 class MyApp(MDApp):
