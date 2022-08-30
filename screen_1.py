@@ -6,7 +6,7 @@ from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationIt
 from kivymd.uix.label import MDLabel
 from kivymd.uix.screen import MDScreen
 from kivymd.app import MDApp
-from kivymd.uix.toolbar import MDToolbar
+from kivymd.uix.toolbar import MDTopAppBar
 
 Config.set('graphics', 'width', '400')
 Config.set('graphics', 'height', '600')
@@ -19,7 +19,7 @@ class MainWindow(MDScreen):
         box = BoxLayout(
             orientation='vertical'
         )
-        toolbar = MDToolbar(
+        toolbar = MDTopAppBar(
             title="Menu",
         )
         # toolbar.md_bg_color = [1, 0.2, 0.2, 1]
