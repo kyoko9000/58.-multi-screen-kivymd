@@ -1,9 +1,9 @@
 # ****************kivyMD GUI **********************************
 from kivy import Config
 from kivy.graphics import Color, Rectangle
+from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
-from kivymd.uix.bottomsheet import MDListBottomSheet, MDGridBottomSheet
-from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.bottomsheet import MDGridBottomSheet, MDListBottomSheet
 from kivymd.uix.button import MDFloatingActionButton
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.label import MDLabel
@@ -18,16 +18,19 @@ Config.write()
 class MainWindow(MDFloatLayout):
     def __init__(self):
         super(MainWindow, self).__init__()
-        box = MDBoxLayout(
+        box = BoxLayout(
             orientation='vertical'
         )
         toolbar = MDTopAppBar(
             title="Menu",
         )
+        # toolbar.md_bg_color = [1, 0.2, 0.2, 1]
         toolbar.left_action_items = [["menu", lambda x: print('menu')]]
         toolbar.right_action_items = [["logout", lambda x: print('exit')]]
 
         bottom = MDBottomNavigation()
+        # bottom.md_bg_color = [0.4, 0.4, 0.4, 1]
+        # bottom.panel_color = [0.2, 0.2, 0.2, 1]
         with bottom.canvas:
             Color(33 / 255, 150 / 255, 243 / 255, 0.3)
             bottom.rect = Rectangle(
@@ -39,7 +42,7 @@ class MainWindow(MDFloatLayout):
 
         item_1 = MDBottomNavigationItem(
             name='screen 1',
-            text='Main',
+            text='main',
             icon='home'
         )
         label_1 = MDLabel(
@@ -76,7 +79,6 @@ class MainWindow(MDFloatLayout):
         item_1.add_widget(label_1)
         item_2.add_widget(label_2)
         item_3.add_widget(label_3)
-
         bottom.add_widget(item_1)
         bottom.add_widget(item_2)
         bottom.add_widget(item_3)
@@ -91,14 +93,14 @@ class MainWindow(MDFloatLayout):
         print(args[0])
 
     def show_example_grid_bottom_sheet(self, x):
-        bottom_sheet_menu = MDListBottomSheet(
-            radius=10,
-            radius_from='top'
-        )
-        # bottom_sheet_menu = MDGridBottomSheet(
+        # bottom_sheet_menu = MDListBottomSheet(
         #     radius=10,
         #     radius_from='top'
         # )
+        bottom_sheet_menu = MDGridBottomSheet(
+            radius=15,
+            radius_from='top'
+        )
         data = {
             "Facebook": "facebook",
             "YouTube": "youtube",
@@ -110,8 +112,8 @@ class MainWindow(MDFloatLayout):
             bottom_sheet_menu.add_item(
                 item[0],
                 lambda x, y=item[0]: self.callback_for_menu_items(y),
-                icon=item[1],
-                # icon_src=item[1],
+                # icon=item[1],
+                icon_src=item[1],
             )
         bottom_sheet_menu.open()
 
