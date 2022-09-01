@@ -63,7 +63,7 @@ MDScreen:
                 MDBoxLayout:
                     orientation: 'vertical'
 
-                    MDToolbar:
+                    MDTopAppBar:
                         title: "Navigation Drawer"
                         elevation: 10
                         left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
