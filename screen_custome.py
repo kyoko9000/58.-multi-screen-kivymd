@@ -1,16 +1,12 @@
 # ****************kivyMD GUI **********************************
 from kivy import Config
 from kivy.graphics import Color, Rectangle
-from kivy.properties import OptionProperty, NumericProperty
-from kivy.uix.boxlayout import BoxLayout
-from kivymd.toast import toast
 from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
 from kivymd.uix.bottomsheet import MDListBottomSheet, MDGridBottomSheet
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDFloatingActionButton
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivymd.uix.label import MDLabel
-from kivymd.uix.screen import MDScreen
 from kivymd.app import MDApp
 from kivymd.uix.toolbar import MDTopAppBar
 
