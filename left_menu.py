@@ -1,15 +1,13 @@
 # ****************kivyMD GUI **********************************
 from kivy import Config
 from kivy.graphics import Color, Rectangle
-from kivy.uix.image import Image
-from kivy.uix.screenmanager import ScreenManager
+from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
-from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.label import MDLabel
-from kivymd.app import MDApp
-from kivymd.uix.navigationdrawer import MDNavigationDrawer, MDNavigationLayout, MDNavigationDrawerMenu, \
-    MDNavigationDrawerHeader, MDNavigationDrawerLabel, MDNavigationDrawerDivider, MDNavigationDrawerItem
+from kivymd.uix.navigationdrawer import MDNavigationDrawer, MDNavigationDrawerMenu, MDNavigationDrawerHeader, \
+    MDNavigationDrawerLabel, MDNavigationDrawerItem, MDNavigationDrawerDivider, MDNavigationLayout
 from kivymd.uix.screen import MDScreen
+from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.toolbar import MDTopAppBar
 
@@ -22,14 +20,19 @@ class MainWindow(MDScreen):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.navi_drawer = None
-        self.box_navi = MDNavigationLayout()
+        box = BoxLayout(
+            orientation='vertical'
+        )
         toolbar = MDTopAppBar(
             title="Menu",
         )
+        # toolbar.md_bg_color = [1, 0.2, 0.2, 1]
         toolbar.left_action_items = [["menu", lambda x: self.show_example_grid_bottom_sheet(x)]]
         toolbar.right_action_items = [["logout", lambda x: print('exit')]]
 
         bottom = MDBottomNavigation()
+        # bottom.md_bg_color = [0.4, 0.4, 0.4, 1]
+        # bottom.panel_color = [0.2, 0.2, 0.2, 1]
         with bottom.canvas:
             Color(33 / 255, 150 / 255, 243 / 255, 0.3)
             bottom.rect = Rectangle(
@@ -132,17 +135,16 @@ class MainWindow(MDScreen):
         item_1.add_widget(label_1)
         item_2.add_widget(label_2)
         item_3.add_widget(label_3)
-
         bottom.add_widget(item_1)
         bottom.add_widget(item_2)
         bottom.add_widget(item_3)
 
-        screen_2 = MDBoxLayout(orientation='vertical')
-        screen_2.add_widget(toolbar)
-        screen_2.add_widget(bottom)
-        screen_1 = MDScreen(screen_2)
+        box.add_widget(toolbar)
+        box.add_widget(bottom)
+        screen_1 = MDScreen(box)
         screen_m = MDScreenManager(screen_1)
 
+        self.box_navi = MDNavigationLayout()
         self.box_navi.add_widget(screen_m)
         self.box_navi.add_widget(self.navi_drawer)
         self.add_widget(self.box_navi)
