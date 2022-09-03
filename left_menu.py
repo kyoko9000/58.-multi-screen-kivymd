@@ -1,6 +1,8 @@
 # ****************kivyMD GUI **********************************
 from kivy import Config
 from kivy.graphics import Color, Rectangle
+from kivy.uix.image import Image
+from kivy.uix.screenmanager import ScreenManager
 from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.label import MDLabel
@@ -19,6 +21,7 @@ Config.write()
 class MainWindow(MDScreen):
     def __init__(self):
         super(MainWindow, self).__init__()
+        self.navi_drawer = None
         self.box_navi = MDNavigationLayout()
         toolbar = MDTopAppBar(
             title="Menu",
@@ -63,6 +66,68 @@ class MainWindow(MDScreen):
             text='sub screen 2',
             halign='center'
         )
+        # menu
+        self.navi_drawer = MDNavigationDrawer(
+            MDNavigationDrawerMenu(
+                MDNavigationDrawerHeader(
+                    title="Header title",
+                    text="Header text",
+                    spacing="4dp",
+                    padding=["12dp", 0, 0, "56dp"]
+                ),
+                MDNavigationDrawerLabel(
+                    text="Mail",
+                ),
+                MDNavigationDrawerItem(
+                    radius=24,
+                    text_color="#4a4939",
+                    icon_color="#4a4939",
+                    focus_color="#e7e4c0",
+                    icon="yahoo",
+                    text="yahoo",
+                    right_text="+99",
+                    on_press=self.callback_for_menu_items
+                ),
+                MDNavigationDrawerItem(
+                    radius=24,
+                    text_color="#4a4939",
+                    icon_color="#4a4939",
+                    focus_color="#e7e4c0",
+                    icon="gmail",
+                    text="gmail",
+                    on_press=self.callback_for_menu_items
+                )
+                ,
+                MDNavigationDrawerDivider(),
+                MDNavigationDrawerLabel(
+                    text="movies",
+                ),
+                MDNavigationDrawerItem(
+                    radius=24,
+                    text_color="#4a4939",
+                    icon_color="#4a4939",
+                    focus_color="#e7e4c0",
+                    # ripple_color="#c5bdd2",
+                    # selected_color="#0c6c4d",
+                    icon="youtube",
+                    text="youtube",
+                    on_press=self.callback_for_menu_items
+                ),
+                MDNavigationDrawerItem(
+                    radius=24,
+                    text_color=[0, 0, 0, 1],
+                    icon_color=[0, 0, 0, 1],
+                    # focus_color=[1, 0, 0, 1],
+                    ripple_color=[0, 0, 0, 1],
+                    selected_color=[0, 0, 1, 1],
+                    icon="facebook",
+                    text="facebook",
+                    on_press=self.callback_for_menu_items
+                )
+            ),
+            radius=(16, 16, 16, 16),
+            # anchor="right"
+        )
 
         item_1.add_widget(label_1)
         item_2.add_widget(label_2)
@@ -79,68 +144,15 @@ class MainWindow(MDScreen):
         screen_m = MDScreenManager(screen_1)
 
         self.box_navi.add_widget(screen_m)
+        self.box_navi.add_widget(self.navi_drawer)
         self.add_widget(self.box_navi)
 
     def callback_for_menu_items(self, *args):
-        print(args[0])
+        print("args[0]")
+        # self.navi_drawer.set_state("close")
 
     def show_example_grid_bottom_sheet(self, x):
-        navi_drawer = MDNavigationDrawer(
-            radius=(0, 16, 16, 0)
-        )
-        self.box_navi.add_widget(navi_drawer)
-        navi_drawer.add_widget(
-            MDNavigationDrawerMenu(
-                MDNavigationDrawerHeader(
-                    title="Header title",
-                    title_color="#4a4939",
-                    text="Header text",
-                    spacing="4dp",
-                    padding=("12dp", 0, 0, "56dp"),
-                ),
-                MDNavigationDrawerLabel(
-                    text="Mail",
-                ),
-                MDNavigationDrawerItem(
-                    radius=24,
-                    text_color="#4a4939",
-                    icon_color="#4a4939",
-                    focus_color="#e7e4c0",
-                    icon="yahoo",
-                    text="yahoo",
-                ),
-                MDNavigationDrawerItem(
-                    radius=24,
-                    text_color="#4a4939",
-                    icon_color="#4a4939",
-                    focus_color="#e7e4c0",
-                    icon="gmail",
-                    text="gmail",
-                )
-                ,
-                MDNavigationDrawerDivider(),
-                MDNavigationDrawerLabel(
-                    text="movies",
-                ),
-                MDNavigationDrawerItem(
-                    radius=24,
-                    text_color="#4a4939",
-                    icon_color="#4a4939",
-                    focus_color="#e7e4c0",
-                    icon="youtube",
-                    text="youtube",
-                ),
-                MDNavigationDrawerItem(
-                    radius=24,
-                    text_color="#4a4939",
-                    icon_color="#4a4939",
-                    focus_color="#e7e4c0",
-                    icon="facebook",
-                    text="facebook",
-                )
-            ),
-        )
-        navi_drawer.set_state("open")
+        self.navi_drawer.set_state("open")
 
 
 class MyApp(MDApp):
