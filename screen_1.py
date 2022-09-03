@@ -36,7 +36,7 @@ class MainWindow(MDScreen):
                 size=bottom.size,
             )
         bottom.bind(pos=lambda obj, pos: setattr(bottom.rect, "pos", pos))
-        bottom.bind(size=lambda obj, size: setattr(bottom.rect, "size", (bottom.width, 56.0)))
+        bottom.bind(size=lambda obj, size: setattr(bottom.rect, "size", (bottom.width, 56)))
 
         item_1 = MDBottomNavigationItem(
             name='screen 1',
