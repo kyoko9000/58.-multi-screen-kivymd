@@ -4,8 +4,8 @@ from kivy.graphics import Color, Rectangle
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
 from kivymd.uix.label import MDLabel
-from kivymd.uix.navigationdrawer import MDNavigationDrawer, MDNavigationDrawerMenu, MDNavigationDrawerHeader, \
-    MDNavigationDrawerLabel, MDNavigationDrawerItem, MDNavigationDrawerDivider, MDNavigationLayout
+from kivymd.uix.navigationdrawer import MDNavigationLayout, MDNavigationDrawer, MDNavigationDrawerMenu, \
+    MDNavigationDrawerHeader, MDNavigationDrawerLabel, MDNavigationDrawerDivider, MDNavigationDrawerItem
 from kivymd.uix.screen import MDScreen
 from kivymd.app import MDApp
 from kivymd.uix.screenmanager import MDScreenManager
@@ -19,7 +19,6 @@ Config.write()
 class MainWindow(MDScreen):
     def __init__(self):
         super(MainWindow, self).__init__()
-        self.navi_drawer = None
         box = BoxLayout(
             orientation='vertical'
         )
@@ -27,7 +26,7 @@ class MainWindow(MDScreen):
             title="Menu",
         )
         # toolbar.md_bg_color = [1, 0.2, 0.2, 1]
-        toolbar.left_action_items = [["menu", lambda x: self.show_example_grid_bottom_sheet(x)]]
+        toolbar.left_action_items = [["menu", lambda x: self.show_left_menu_sheet(x)]]
         toolbar.right_action_items = [["logout", lambda x: print('exit')]]
 
         bottom = MDBottomNavigation()
@@ -85,10 +84,10 @@ class MainWindow(MDScreen):
                     radius=24,
                     text_color="#4a4939",
                     icon_color="#4a4939",
-                    focus_color="#e7e4c0",
+                    # focus_color="#e7e4c0",
                     icon="yahoo",
                     text="yahoo",
-                    right_text="+99",
+                    right_text="+995",
                     on_press=self.callback_for_menu_items
                 ),
                 MDNavigationDrawerItem(
@@ -99,8 +98,7 @@ class MainWindow(MDScreen):
                     icon="gmail",
                     text="gmail",
                     on_press=self.callback_for_menu_items
-                )
-                ,
+                ),
                 MDNavigationDrawerDivider(),
                 MDNavigationDrawerLabel(
                     text="movies",
@@ -110,8 +108,8 @@ class MainWindow(MDScreen):
                     text_color="#4a4939",
                     icon_color="#4a4939",
                     focus_color="#e7e4c0",
-                    # ripple_color="#c5bdd2",
-                    # selected_color="#0c6c4d",
+                    ripple_color="#c5bdd2",
+                    selected_color="#0c6c4d",
                     icon="youtube",
                     text="youtube",
                     on_press=self.callback_for_menu_items
@@ -128,8 +126,8 @@ class MainWindow(MDScreen):
                     on_press=self.callback_for_menu_items
                 )
             ),
-            radius=(16, 16, 16, 16),
-            # anchor="right"
+            radius=(16, 0, 0, 16),
+            anchor="right"
         )
 
         item_1.add_widget(label_1)
@@ -150,10 +148,10 @@ class MainWindow(MDScreen):
         self.add_widget(self.box_navi)
 
     def callback_for_menu_items(self, *args):
-        print("args[0]")
-        # self.navi_drawer.set_state("close")
+        print("hello")
+        self.navi_drawer.set_state("close")
 
-    def show_example_grid_bottom_sheet(self, x):
+    def show_left_menu_sheet(self, x):
         self.navi_drawer.set_state("open")
 
 
