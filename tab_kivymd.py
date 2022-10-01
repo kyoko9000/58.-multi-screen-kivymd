@@ -37,7 +37,7 @@ class MainWindow(MDScreen):
                         icon=tab_name,
                         icon_size="48sp",
                         pos_hint={"center_x": .5, "center_y": .5},
-                        text="M"
+                        text="hello"
                     ),
                     icon=tab_name,
                     title="M" + str(self.j)
@@ -64,8 +64,8 @@ class MyApp(MDApp):
         super().__init__()
 
     def build(self):
-        self.theme_cls.theme_style = "Dark"
-        self.theme_cls.primary_palette = "Orange"
+        self.theme_cls.theme_style = "Light"
+        self.theme_cls.primary_palette = "LightBlue"
         return MainWindow()
 
 
