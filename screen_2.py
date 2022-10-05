@@ -42,7 +42,7 @@ class MainWindow(MDScreen):
                 text=i,
                 secondary_text="Secondary text here",
                 tertiary_text="fit more text than usual",
-                _txt_left_pad="100dp"
+                _txt_left_pad="100dp",
             )
             image = ImageLeftWidget()
             image.source = "pics/{}".format(j)
