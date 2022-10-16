@@ -13,7 +13,7 @@ class Example(MDApp):
         a = "1"
         layout = AnchorLayout()
         data_tables = MDDataTable(
-            size_hint=(0.9, 0.6),
+            size_hint=(0.9, 0.9),
             column_data=[
                 ("Column 1", dp(20)),
                 ("Column 2", dp(30)),
