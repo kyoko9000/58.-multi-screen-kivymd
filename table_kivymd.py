@@ -1,7 +1,7 @@
 from kivy.metrics import dp
-from kivy.uix.anchorlayout import AnchorLayout
 
 from kivymd.app import MDApp
+from kivymd.uix.anchorlayout import MDAnchorLayout
 from kivymd.uix.datatables import MDDataTable
 
 
@@ -11,7 +11,7 @@ class Example(MDApp):
         self.theme_cls.primary_palette = "Orange"
 
         a = "1"
-        layout = AnchorLayout()
+        layout = MDAnchorLayout()
         data_tables = MDDataTable(
             size_hint=(0.9, 0.9),
             column_data=[
